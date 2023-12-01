@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # get day
-d=$(date '+%d')
+d=$(date '+%-d')
 
 # make copy for day
 cp ./base.py d$d.py
