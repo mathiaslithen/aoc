@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# get day
-d=$(date '+%-d')
+# get day from user or default to today
+if [ -z "$1" ]
+then
+  d=$(date '+%-d')
+else
+  d=$1
+fi
 
 # make copy for day
 cp ./base.py d$d.py
@@ -10,4 +15,4 @@ cp ./base.py d$d.py
 sed -i "s/n.in/${d}.in/g" d$d.py
 
 # fetch input for day
-./get_input.py
+./get_input.py $d $2
