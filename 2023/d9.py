@@ -29,3 +29,24 @@ for line in lines:
 
 print(sum(A))
 print(sum(B))
+
+
+# recursive solution
+
+
+def recurse(xs, p=1):
+    if all(x == 0 for x in xs):
+        return 0
+    diff = [b - a for a, b in zip(xs, xs[1:])]
+    if p == 1:
+        return xs[-1] + recurse(diff)
+    return xs[0] - recurse(diff, p=p)
+
+
+x = y = 0
+for line in lines:
+    xs = [int(x) for x in line.split()]
+    x += recurse(xs)
+    y += recurse(xs, p=2)
+print(x)
+print(y)
