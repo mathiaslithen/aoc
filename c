@@ -8,6 +8,10 @@ else
   d=$1
 fi
 
+# reset example file
+rm -f ex
+touch ex
+
 # make copy for day
 cp ./base.py d$d.py
 
