@@ -1,17 +1,23 @@
 import re
 
 
+def _rc(G):
+    return len(G), len(G[0])
+
+
 def INTS(line):
     x = re.findall(r'\d+', line)
     if x:
         return list(map(int, x))
 
 
-def INB(R, C, rr, cc):
+def INB(G, rr, cc):
+    R, C = _rc(G)
     return 0 <= rr < R and 0 <= cc < C
 
 
-def RC(R, C):
+def RC(G):
+    R, C = _rc(G)
     yield from [(r, c) for r in range(R) for c in range(C)]
 
 
@@ -31,7 +37,8 @@ def ALLD():
     yield from (*DRC(), *DIAG())
 
 
-def GFIND(G, R, C, x):
+def GFIND(G, x):
+    R, C = _rc(G)
     ret = []
     for r, c in RC(R, C):
         v = G[r][c]
