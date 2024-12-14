@@ -6,7 +6,7 @@ def _rc(G):
 
 
 def INTS(line):
-    x = re.findall(r'\d+', line)
+    x = re.findall(r'\-?\d+', line)
     if x:
         return list(map(int, x))
 
@@ -38,9 +38,8 @@ def ALLD():
 
 
 def GFIND(G, x):
-    R, C = _rc(G)
     ret = []
-    for r, c in RC(R, C):
+    for r, c in RC(G):
         v = G[r][c]
         if callable(x):
             valid = x(v)
