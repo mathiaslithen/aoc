@@ -59,23 +59,17 @@ def can_move(box, boxes, move, walls):
             yield False
         elif nxt := is_box(nnn, boxes):
             yield from can_move(nxt, boxes, move, walls)
-        else:
-            yield nnn not in walls
     else:
         pos_l = (lr + dr, lc)
         pos_r = (rr + dr, rc)
         if pos_l in walls or pos_r in walls:
             yield False
         else:
-            if pos_l in walls or pos_r in walls:
-                yield False
-            else:
-                if pos_l not in walls and pos_r not in walls:
-                    yield True
-                if nxt_box := is_box(pos_l, boxes):
-                    yield from can_move(nxt_box, boxes, move, walls)
-                if nxt_box := is_box(pos_r, boxes):
-                    yield from can_move(nxt_box, boxes, move, walls)
+            if nxt_box := is_box(pos_l, boxes):
+                yield from can_move(nxt_box, boxes, move, walls)
+            if nxt_box := is_box(pos_r, boxes):
+                yield from can_move(nxt_box, boxes, move, walls)
+            yield True
 
 
 def move_box(box, boxes, move):
@@ -103,7 +97,6 @@ def move_box(box, boxes, move):
 def g(data):
     G, inst = parse(data, part=2)
     robot = GFIND(G, '@')[0]
-    G = [x.replace('@', '.') for x in G]
     boxes = list(zip(GFIND(G, '['), GFIND(G, ']')))
     walls = GFIND(G, '#')
     for move in inst:
