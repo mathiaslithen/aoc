@@ -6,7 +6,7 @@ from collections import Counter, defaultdict, deque
 from heapq import heappop, heappush
 from math import lcm
 
-from helpers import ALLD, DIAG, DRC, GFIND, INB, INTS, RC
+from helpers import ALLD, DIAG, DIM, DRC, GFIND, INB, INTS, RC, VIS
 
 sys.setrecursionlimit(10**5)
 fn = sys.argv[1] if len(sys.argv) > 1 else 'n.in'
@@ -22,4 +22,4 @@ def f(G, part=1):
 
 
 print('A', f(G))
-print('B', f(G, part=2))
+# print('B', f(G, part=2))

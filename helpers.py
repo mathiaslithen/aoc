@@ -48,3 +48,9 @@ def GFIND(G, x):
         if valid:
             ret.append((r, c))
     return ret
+
+def VIS(G):
+    print('\n'.join(''.join(str(i) for i in line) for line in G), '\n')
+
+def DIM(G):
+    return len(G), len(G[0])
