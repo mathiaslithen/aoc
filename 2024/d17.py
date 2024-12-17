@@ -54,7 +54,7 @@ def f(reg, prog):
     return ans
 
 
-def rev(a, b, c, target):
+def rev(a, target):
     """
     Register A: 46323429
     Register B: 0
@@ -70,7 +70,8 @@ def rev(a, b, c, target):
     out(b % 8)
     if a != 0: loop
     """
-    reg = (a, b, c)
+    _a = a
+    b = c = 0
     out = []
     while a:
         b = a % 8
@@ -80,16 +81,21 @@ def rev(a, b, c, target):
         b = b ^ c
         a = a // 8
         out.append(b % 8)
-    return out == target, reg, out
+    if out == target:
+        return _a
 
 
 def p2(data):
     reg, prog = parse(data)
-    for i in range(20567627247056 << 3, 10**20):
-        t, r, o = rev(i, 0, 0, prog)
-        if t:
-            # print(f'success @ {i=} -> {r=} & {o=}')
-            return r[0]
+    i = p = -1
+    while True:
+        i += 1
+        a = rev(i, prog[p:])
+        if a:
+            if p == -16:
+                return a
+            p -= 1
+            i = (a << 3)
 
 
 def p1(data):
