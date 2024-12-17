@@ -49,8 +49,14 @@ def GFIND(G, x):
             ret.append((r, c))
     return ret
 
+
 def VIS(G):
     print('\n'.join(''.join(str(i) for i in line) for line in G), '\n')
 
+
 def DIM(G):
     return len(G), len(G[0])
+
+
+def ROT(G):
+    return list(map(list, zip(*G)))

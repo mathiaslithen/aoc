@@ -6,7 +6,7 @@ from collections import Counter, defaultdict, deque
 from heapq import heappop, heappush
 from math import lcm
 
-from helpers import ALLD, DIAG, DIM, DRC, GFIND, INB, INTS, RC, VIS
+from helpers import ALLD, DIAG, DIM, DRC, GFIND, INB, INTS, RC, ROT, VIS
 
 sys.setrecursionlimit(10**5)
 fn = sys.argv[1] if len(sys.argv) > 1 else 'n.in'
