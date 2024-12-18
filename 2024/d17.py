@@ -15,8 +15,8 @@ with open(fn) as f:
 
 
 def parse(data):
-    reg, prog = data.split('\n\n')
-    return INTS(reg), list(map(int, prog.split(':')[1].split(',')))
+    data = INTS(data)
+    return data[:3], data[3:]
 
 
 def f(reg, prog):
