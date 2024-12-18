@@ -16,11 +16,7 @@ with open(fn) as f:
 
 def parse(data):
     reg, prog = data.split('\n\n')
-    r = []
-    for line in reg.split('\n'):
-        r.append(int(line.split(':')[1]))
-    prog = list(map(int, prog.split(':')[1].split(',')))
-    return r, prog
+    return INTS(reg), list(map(int, prog.split(':')[1].split(',')))
 
 
 def f(reg, prog):
@@ -70,7 +66,6 @@ def rev(a, target):
     out(b % 8)
     if a != 0: loop
     """
-    _a = a
     b = c = 0
     out = []
     while a:
@@ -81,8 +76,7 @@ def rev(a, target):
         b = b ^ c
         a = a // 8
         out.append(b % 8)
-    if out == target:
-        return _a
+    return out == target
 
 
 def p2(data):
@@ -90,12 +84,11 @@ def p2(data):
     i = p = -1
     while True:
         i += 1
-        a = rev(i, prog[p:])
-        if a:
+        if rev(i, prog[p:]):
             if p == -16:
-                return a
+                return i
             p -= 1
-            i = (a << 3)
+            i <<= 3
 
 
 def p1(data):
